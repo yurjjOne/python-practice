@@ -47,6 +47,47 @@ def min_max_if(a, b, c):
     return lo, hi
 
 
+# Задача 4. Прості числа
+def is_prime(n):
+    """True, якщо n просте; дільники перебираємо до кореня з n."""
+    if n < 2:
+        return False
+    for d in range(2, int(n ** 0.5) + 1):
+        if n % d == 0:
+            return False
+    return True
+
+
+def primes_up_to(n):
+    """Процедура: друкує прості числа від 2 до n в один рядок."""
+    for k in range(2, n + 1):
+        if is_prime(k):
+            print(k, end=" ")
+    print()
+
+
+def count_primes(n):
+    """Кількість простих чисел від 2 до n (спробуйте самі)."""
+    count = 0
+    for k in range(2, n + 1):
+        if is_prime(k):
+            count += 1
+    return count
+
+
+# Задача 5. Рамка
+def print_box(width, symbol="*", height=3):
+    """Процедура: порожня рамка шириною width.
+
+    height=3 — додатковий параметр зі значенням за замовчуванням
+    (спробуйте самі): висота рамки в рядках, мінімум 2.
+    """
+    print(symbol * width)
+    for _ in range(height - 2):
+        print(symbol + " " * (width - 2) + symbol)
+    print(symbol * width)
+
+
 if __name__ == "__main__":
     # Задача 1
     print(c_to_f(100), "очікуємо 212.0")
@@ -67,3 +108,17 @@ if __name__ == "__main__":
     print(min_max(-5, -2, -9), "очікуємо (-9, -2)")
     print(min_max(3, 3, 3), "очікуємо (3, 3)")
     print(min_max_if(4, 9, 2), "очікуємо (2, 9)")
+
+    # Задача 4
+    print(is_prime(0), is_prime(1), "очікуємо False False")
+    print(is_prime(2), "очікуємо True")
+    print(is_prime(9), is_prime(15), "очікуємо False False")
+    print(is_prime(17), is_prime(29), "очікуємо True True")
+    primes_up_to(30)          # 2 3 5 7 11 13 17 19 23 29
+    print(count_primes(20), "очікуємо 8")
+
+    # Задача 5
+    print_box(4)
+    print_box(3, "#")
+    print_box(6)
+    print_box(5, "#", 4)
